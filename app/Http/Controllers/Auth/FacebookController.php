@@ -16,10 +16,9 @@ class FacebookController extends Controller
         $user_token = $request->input('access_token');
 
         $providerUser = Socialite::driver($provider)->userFromToken($user_token);
-        // check if access token exists etc
-        // search for a user in our server with the specified provider id and provider name
         $user = User::where('provider_name', $provider)->where('provider_id', $providerUser->id)->first();
         // if there is no record with these data, create a new user
+
         dd($user);
         if($user == null){
             try{

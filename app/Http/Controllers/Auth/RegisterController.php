@@ -20,6 +20,7 @@ class RegisterController extends Controller
                     'confirm_password' => 'required|same:password',
                 ]
             );
+            
             if ($validator->fails()) {
                 return response()->json(['Validation errors' => $validator->errors()]);
             }
@@ -36,7 +37,8 @@ class RegisterController extends Controller
             // create and return data
             $user = User::create($input);
             $accessToken = $user->createToken('authToken')->plainTextToken;
-            return response([ 'user' => $user, 'token' => $accessToken]);
+            $presentedUser = User::find($user)->first();
+            return response(['user' => $presentedUser, 'token' => $accessToken, 'success' => true, 'message' => 'Registered successfully']);
     }
 
 }

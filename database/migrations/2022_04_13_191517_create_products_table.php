@@ -21,9 +21,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->double('price');
             $table->double('old_price');
-            $table->unsignedBigInteger('categories_id');
             $table->unsignedBigInteger('subcategories_id');
-            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('subcategories_id')->references('id')->on('sub_categories')->onDelete('cascade');
             $table->timestamps();
         });
