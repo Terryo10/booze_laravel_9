@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
-use App\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -14,12 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = new Cart();
-        $id = $cart->id;
-        $user_id = $cart->user_id;
-        $created_at = $cart->created_at;
-       
-        return response()->json(['id' => $id,'user_id' => $user_id, 'created_at' => $created_at]);
+//        get authenticated user's cart
     }
 
     /**
@@ -40,7 +36,20 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //add to cart
+        //check if user has cart
+        $user = Auth::user();
+        if($user->cart != null){
+            //proceed
+            return 'user has cart';
+        }else{
+            //create a new cart
+            $cart = new Cart();
+            $cart->user_id = $user->id;
+            $cart->save();
+            return $cart;
+        }
+
     }
 
     /**
