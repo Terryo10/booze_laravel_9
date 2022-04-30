@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\LoginController as LoginControllerAlias;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,6 @@ Route::post('/auth/facebook/callback', [FacebookController::class, 'loginWithFac
 
 //CATEGORIES & PRODUCTS
 Route::get('categories',[CategoriesController::class ,'getCategories']);
+
+//Cart Routes 
+Route::get('/cart',[CartControllerAlias::class, 'index']);
