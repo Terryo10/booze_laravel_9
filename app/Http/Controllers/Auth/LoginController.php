@@ -24,6 +24,4 @@ class LoginController extends Controller
         $accessToken = auth()->user()->createToken('authToken')->plainTextToken;
         return response(['user' => auth()->user(), 'token' => $accessToken, 'success' => true, 'message' => 'Logged in successfully']);
     }
-
-
 }

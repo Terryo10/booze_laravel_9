@@ -66,7 +66,7 @@ class CategoryController extends AdminController
         $form = new Form(new Categories());
 
         $form->text('name', __('Name'));
-        $form->text('icon', __('Icon'));
+        $form->image('icon', __('Icon'));
         $form->text('class', __('Class'));
 
         return $form;

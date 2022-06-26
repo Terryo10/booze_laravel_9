@@ -19,7 +19,6 @@ class ProductsController extends AdminController
      */
     protected $title = 'Products';
 
-
     /**
      * Make a grid builder.
      *
@@ -28,6 +27,7 @@ class ProductsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Products());
+
         $grid->filter(function ($filter) {
             // Remove the default id filter
             $filter->disableIdFilter();
@@ -42,7 +42,7 @@ class ProductsController extends AdminController
         $grid->column('quantity', __('Quantity'));
         $grid->column('price', __('Price'));
         $grid->column('old_price', __('Old price'));
-//        $grid->column('subcategories_id', __('Subcategories'));
+        $grid->column('unit', __('Unit'));
         $grid->column('subcategories_id', __('Subcategories'))->display(function ($category) {
             $subCategory = SubCategory::find($category);
             $categoryParent = Categories::find($subCategory->categories_id);
@@ -63,6 +63,7 @@ class ProductsController extends AdminController
     protected function detail($id)
     {
         $show = new Show(Products::findOrFail($id));
+
         $show->field('id', __('Id'));
         $show->field('imagePath', __('ImagePath'));
         $show->field('title', __('Title'));
@@ -70,6 +71,7 @@ class ProductsController extends AdminController
         $show->field('quantity', __('Quantity'));
         $show->field('price', __('Price'));
         $show->field('old_price', __('Old price'));
+        $show->field('unit', __('Unit'));
         $show->field('subcategories_id', __('Subcategories id'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -92,7 +94,9 @@ class ProductsController extends AdminController
         $form->number('quantity', __('Quantity'));
         $form->decimal('price', __('Price'));
         $form->decimal('old_price', __('Old price'));
+        $form->text('unit', __('Unit'));
         $form->select('subcategories_id', __('Select Brand '))->options(SubCategory::all()->pluck('name', 'id'));
+
         return $form;
     }
 }
