@@ -15,8 +15,7 @@ Route::group([
     $router->resource('categories', CategoryController::class);
     $router->resource('sub_categories', SubCategoryController::class);
     $router->resource('products', ProductsController::class);
-
-
-
-
+    $router->resource('delivery-times', DeliveryTimesController::class);
+    $router->resource('payment-methods', PaymentMethodsController::class);
+    $router->resource('extras', ExtrasController::class);
 });
