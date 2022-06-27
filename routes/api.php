@@ -21,18 +21,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-    Route::post('/register',[RegisterController::class, 'register']);
-    Route::post('/login',[LoginControllerAlias::class, 'login']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/login', [LoginControllerAlias::class, 'login']);
 Route::post('/auth/facebook/callback', [FacebookController::class, 'loginWithFacebook']);
-Route::get('user',[UserController::class, 'getUser'])->middleware('auth:sanctum');
+Route::get('user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
 
 //CATEGORIES & PRODUCTS
-Route::get('categories',[CategoriesController::class ,'getCategories']);
-Route::get('products',[ProductsController::class ,'getProducts']);
+Route::get('categories', [CategoriesController::class, 'getCategories']);
+Route::get('products', [ProductsController::class, 'getProducts']);
 
 //CART ROUTES
 Route::resource('cart', CartController::class)->middleware('auth:sanctum');
+
+//CHECKOUT ROUTES
+Route::get('get_checkout_resources',[\App\Http\Controllers\CheckoutController::class ,'getCheckOutDetails']);
 

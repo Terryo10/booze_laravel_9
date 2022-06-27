@@ -18,4 +18,6 @@ Route::group([
     $router->resource('delivery-times', DeliveryTimesController::class);
     $router->resource('payment-methods', PaymentMethodsController::class);
     $router->resource('extras', ExtrasController::class);
+    $router->resource('suburbs', SuburbController::class);
+
 });

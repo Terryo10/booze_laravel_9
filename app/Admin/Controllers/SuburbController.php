@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Extras;
+use App\Models\Suburb;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class ExtrasController extends AdminController
+class SuburbController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Extras';
+    protected $title = 'Suburb';
 
     /**
      * Make a grid builder.
@@ -24,13 +24,11 @@ class ExtrasController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Extras());
+        $grid = new Grid(new Suburb());
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
         $grid->column('price', __('Price'));
-        $grid->column('stock', __('Stock'));
-        $grid->column('image_path', __('Image path'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -45,13 +43,11 @@ class ExtrasController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Extras::findOrFail($id));
+        $show = new Show(Suburb::findOrFail($id));
 
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
         $show->field('price', __('Price'));
-        $show->field('stock', __('Stock'));
-        $show->field('image_path', __('Image path'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -65,12 +61,10 @@ class ExtrasController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Extras());
+        $form = new Form(new Suburb());
 
         $form->text('name', __('Name'));
         $form->decimal('price', __('Price'));
-        $form->number('stock', __('Stock'));
-        $form->image('image_path', __('Image path'));
 
         return $form;
     }
